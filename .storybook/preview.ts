@@ -4,6 +4,15 @@ import "tailwindcss/tailwind.css";
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: "teracloud-light",
+      values: [
+        {
+          name: "teracloud-light",
+          value: "#dee2ff",
+        },
+      ],
+    },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
