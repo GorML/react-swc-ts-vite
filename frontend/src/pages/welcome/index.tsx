@@ -1,5 +1,11 @@
+import WelcomeCard from "./components/WelcomeCard";
+
 const Welcome = () => {
-  return <div>Welcome</div>;
+  return (
+    <div>
+      <WelcomeCard />
+    </div>
+  );
 };
 
 export default Welcome;

@@ -5,7 +5,7 @@ type CardProps = {
   className?: string;
 };
 
-const Card: React.FC<CardProps> = ({ children, className }) => {
+const Card = ({ children, className }: CardProps) => {
   return (
     <div className={cn("bg-white rounded-xl p-2", className)}>{children}</div>
   );

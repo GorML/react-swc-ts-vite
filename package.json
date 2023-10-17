@@ -1,0 +1,16 @@
+{
+  "name": "teracloud",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/GorML/react-swc-ts-vite.git",
+  "author": "Timofei Kurohtin <forgwent@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "concurrently \"cd frontend && yarn dev\" \"cd backend && yarn dev\"",
+    "sb" : "cd frontend && yarn sb"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

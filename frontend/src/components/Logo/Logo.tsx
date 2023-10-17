@@ -12,7 +12,7 @@ const Logo = (props: LogoProps) => {
   return (
     <div className={cn("flex gap-2 items-center", className)}>
       <PiGraphFill className={svgClassName} />
-      {!collapsed && <span>Teragraph Cloud</span>}
+      {!collapsed && <span className="whitespace-pre">TeraCloud</span>}
     </div>
   );
 };
