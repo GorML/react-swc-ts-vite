@@ -1,5 +1,35 @@
 version: "3.9"
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    image: cloudapp-frontend-image
+    container_name: cloudapp-frontend
+    ports:
+      - "80:80"
+    # volumes:
+    #   - ./public:/app/public
+    networks:
+      - teracloud-network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    image: cloudapp-backend-image
+    container_name: cloudapp-backend
+    ports:
+      - "4000:4000"
+    # environment:
+    #   DATABASE_URL: "postgresql://user:password@db:5432/mydb"
+    networks:
+      - teracloud-network
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:16
     container_name: postgres_container
@@ -55,7 +85,7 @@ services:
     ports:
       - "5433:5432"
     networks:
-      - postgres-network
+      - teracloud-network
 
   pgadmin:
     container_name: pgadmin_container
@@ -76,7 +106,7 @@ services:
           cpus: "0.5"
           memory: 1G
     networks:
-      - postgres-network
+      - teracloud-network
     depends_on:
       - postgres
 
@@ -85,5 +115,5 @@ volumes:
   pgadmin-data:
 
 networks:
-  postgres-network:
+  teracloud-network:
     driver: bridge
