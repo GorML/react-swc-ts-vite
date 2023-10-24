@@ -1,8 +1,10 @@
 FROM node:20-alpine
 WORKDIR /app
 COPY package.json /app/package.json
-RUN yarn
+COPY yarn.lock /app/yarn.lock
+RUN yarn --frozen-lockfile
 COPY . /app
 EXPOSE 4000 
 USER node
+RUN yarn prisma generate
 CMD ["yarn", "dev"]

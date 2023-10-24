@@ -11,7 +11,7 @@ services:
     # volumes:
     #   - ./public:/app/public
     networks:
-      - teracloud-network
+      - teracloud-public
     depends_on:
       - backend
 
@@ -26,7 +26,8 @@ services:
     # environment:
     #   DATABASE_URL: "postgresql://user:password@db:5432/mydb"
     networks:
-      - teracloud-network
+      - teracloud-private
+      - teracloud-public
     depends_on:
       - postgres
 
@@ -83,9 +84,9 @@ services:
           cpus: "1"
           memory: 4G
     ports:
-      - "5433:5432"
+      - "5433:5433"
     networks:
-      - teracloud-network
+      - teracloud-private
 
   pgadmin:
     container_name: pgadmin_container
@@ -106,7 +107,7 @@ services:
           cpus: "0.5"
           memory: 1G
     networks:
-      - teracloud-network
+      - teracloud-private
     depends_on:
       - postgres
 
@@ -115,5 +116,10 @@ volumes:
   pgadmin-data:
 
 networks:
-  teracloud-network:
+  teracloud-private:
+    name: teracloud-private-network
+    driver: bridge
+
+  teracloud-public:
+    name: teracloud-public-network
     driver: bridge

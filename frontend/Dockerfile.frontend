@@ -1,7 +1,8 @@
 FROM node:20-alpine as builder
 WORKDIR /app
 COPY package.json /app/package.json
-RUN yarn install
+COPY yarn.lock /app/yarn.lock
+RUN yarn install --frozen-lockfile
 COPY . /app
 RUN yarn build:docker
 
